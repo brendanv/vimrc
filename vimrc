@@ -10,6 +10,7 @@ Plugin 'chriskempson/base16-vim' 	" color schemes
 Plugin 'vim-airline/vim-airline'	" status bar
 Plugin 'pangloss/vim-javascript'	" js syntax highlighting
 Plugin 'mxw/vim-jsx'			" jsx syntax highlighting
+Plugin 'Valloric/YouCompleteMe'		" autocomplete
 call vundle#end()
 filetype plugin indent on
 
