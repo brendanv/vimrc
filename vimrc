@@ -4,13 +4,13 @@
 set nocompatible
 set runtimepath^=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'		" Vundle has to manage itself
-Plugin 'ctrlpvim/ctrlp.vim'		" fuzzy searching
-Plugin 'chriskempson/base16-vim' 	" color schemes
-Plugin 'vim-airline/vim-airline'	" status bar
-Plugin 'pangloss/vim-javascript'	" js syntax highlighting
-Plugin 'mxw/vim-jsx'			" jsx syntax highlighting
-Plugin 'Valloric/YouCompleteMe'		" autocomplete
+Plugin 'VundleVim/Vundle.vim'     " Vundle has to manage itself
+Plugin 'ctrlpvim/ctrlp.vim'       " fuzzy searching
+Plugin 'chriskempson/base16-vim'  " color schemes
+Plugin 'vim-airline/vim-airline'  " status bar
+Plugin 'pangloss/vim-javascript'  " js syntax highlighting
+Plugin 'mxw/vim-jsx'              " jsx syntax highlighting
+Plugin 'Valloric/YouCompleteMe'   " autocomplete
 call vundle#end()
 filetype plugin indent on
 
@@ -23,21 +23,23 @@ colorscheme base16-tomorrow-night
 " UI Config {{{
 
 syntax enable
-set number 	" line numbers
+set number            " line numbers
 set relativenumber
-set ruler	" show line/col number
-set showcmd 	" command
-set cursorline	" highlight current lint
-set wildmenu	" graphical autocomplete menu
-set lazyredraw	" redraw only when necessary
-set showmatch	" highlight matching paren/bracket
-set modelines=1 " check last line only for file-specific config
+set ruler             " show line/col number
+set showcmd           " command
+set cursorline        " highlight current lint
+set wildmenu          " graphical autocomplete menu
+set lazyredraw        " redraw only when necessary
+set showmatch         " highlight matching paren/bracket
+set modelines=1       " check last line only for file-specific config
+set tabstop=2         " visual spaces per tab
+set expandtab         " tabs are spaces
 
 " }}}
 " Search {{{
 
-set incsearch	" search as you type
-set hlsearch	" highlight matches
+set incsearch " search as you type
+set hlsearch  " highlight matches
 
 " }}}
 " Leader Config {{{
