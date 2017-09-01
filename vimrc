@@ -34,6 +34,7 @@ set showmatch         " highlight matching paren/bracket
 set modelines=1       " check last line only for file-specific config
 set tabstop=2         " visual spaces per tab
 set expandtab         " tabs are spaces
+set smarttab          " be smart
 
 " }}}
 " Search {{{
@@ -49,11 +50,16 @@ nnoremap <leader><space> :nohlsearch<CR>
 " Leader Config {{{
 
 let mapleader=","
+
+" fuzzy search
 nnoremap <leader>a :CtrlP<CR>
+" toggle relative/absolute line numbers
 nnoremap <leader>r :call ToggleNumber()<CR>
 " Make it easy to edit and source vimrc
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
+" switch CWD to path of current buffer
+nnoremap <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " }}}
 " Movement {{{
