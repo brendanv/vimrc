@@ -45,6 +45,9 @@ set hlsearch	" highlight matches
 let mapleader=","
 nnoremap <leader>a :CtrlP<CR>
 nnoremap <leader>r :call ToggleNumber()<CR>
+" Make it easy to edit and source vimrc
+nnoremap <leader>ev :vsplit $MYVIMRC<CR>
+nnoremap <leader>sv :source $MYVIMRC<CR>
 
 " }}}
 " Movement {{{
