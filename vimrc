@@ -38,8 +38,12 @@ set expandtab         " tabs are spaces
 " }}}
 " Search {{{
 
-set incsearch " search as you type
-set hlsearch  " highlight matches
+set incsearch   " search as you type
+set hlsearch    " highlight matches
+set ignorecase  " ignore case when searching
+set smartcase   " unless it has a capital letter
+" make it easy to turn off search highlighting
+nnoremap <leader><space> :nohlsearch<CR>
 
 " }}}
 " Leader Config {{{
