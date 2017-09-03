@@ -14,6 +14,7 @@ Plugin 'Valloric/YouCompleteMe'   " autocomplete
 Plugin 'scrooloose/nerdtree'      " file explorer
 Plugin 'tomtom/tcomment_vim'      " easily comment/uncomment lines
 Plugin 'airblade/vim-gitgutter'   " git status in sidebar
+Plugin 'flowtype/vim-flow'        " flow
 call vundle#end()
 filetype plugin indent on
 
@@ -132,6 +133,15 @@ augroup END
 
 nnoremap <C-_> :TComment<CR>
 vnoremap <C-_> :TComment<CR>
+
+" }}}
+" Plugin - flowtype/vim-flow {{{
+
+augroup vimflow
+  autocmd!
+  " Should put this in a JS-specific file, but it's ok for now
+  autocmd FileType javascript nnoremap <buffer> gD :FlowJumpToDef<CR>
+augroup END
 
 " }}}
 " Custom Functions {{{
