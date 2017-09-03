@@ -58,8 +58,6 @@ let mapleader=","
 nnoremap <leader>a :CtrlP<CR>
 " show/hide file tree
 nnoremap <leader>f :NERDTreeToggle<CR>
-" toggle relative/absolute line numbers
-nnoremap <leader>r :call ToggleNumber()<CR>
 " Make it easy to edit and source vimrc
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
@@ -75,6 +73,16 @@ nnoremap j gj
 nnoremap k gk
 " open/close folds with space
 nnoremap <Space> za
+
+" }}}
+" Autogroups {{{
+
+augroup uiconfig
+  autocmd!
+  " Show absolute line numbers in insert mode only
+  autocmd InsertEnter * set norelativenumber
+  autocmd InsertLeave * set relativenumber
+augroup END
 
 " }}}
 " Tmux {{{
@@ -119,15 +127,6 @@ augroup END
 
 " }}}
 " Custom Functions {{{
-
-function! ToggleNumber()
-  if(&relativenumber == 1)
-    set norelativenumber
-    set number
-  else
-    set relativenumber
-  endif
-endfunc
 
 " }}}
 " vim:foldmethod=marker:foldlevel=0
