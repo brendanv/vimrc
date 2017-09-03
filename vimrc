@@ -76,6 +76,9 @@ nnoremap j gj
 nnoremap k gk
 " open/close folds with space
 nnoremap <Space> za
+" Move left and right between splits
+nnoremap <C-j> <C-w><Left>
+nnoremap <C-k> <C-w><Right>
 
 " }}}
 " Autogroups {{{
