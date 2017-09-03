@@ -34,6 +34,8 @@ set lazyredraw        " redraw only when necessary
 set showmatch         " highlight matching paren/bracket
 set modelines=1       " check last line only for file-specific config
 set tabstop=2         " visual spaces per tab
+set softtabstop=2
+set shiftwidth=2
 set expandtab         " tabs are spaces
 set smarttab          " be smart
 
@@ -107,24 +109,24 @@ let g:javascript_plugin_flow = 1
 " Plugin scrooloose/nerdtree {{{
 
 augroup nerdtree
-        autocmd!
-        " Close vim if only window open is nerdtree
-        autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-        " If no file is specified when starting vim, open nerdtree
-        autocmd StdinReadPre * let s:std_in=1
-        autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+  autocmd!
+  " Close vim if only window open is nerdtree
+  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+  " If no file is specified when starting vim, open nerdtree
+  autocmd StdinReadPre * let s:std_in=1
+  autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 augroup END
 
 " }}}
 " Custom Functions {{{
 
 function! ToggleNumber()
-	if(&relativenumber == 1)
-		set norelativenumber
-		set number
-	else
-		set relativenumber
-	endif
+  if(&relativenumber == 1)
+    set norelativenumber
+    set number
+  else
+    set relativenumber
+  endif
 endfunc
 
 " }}}
