@@ -13,6 +13,7 @@ Plugin 'mxw/vim-jsx'              " jsx syntax highlighting
 Plugin 'Valloric/YouCompleteMe'   " autocomplete
 Plugin 'scrooloose/nerdtree'      " file explorer
 Plugin 'tomtom/tcomment_vim'      " easily comment/uncomment lines
+Plugin 'airblade/vim-gitgutter'   " git status in sidebar
 call vundle#end()
 filetype plugin indent on
 
