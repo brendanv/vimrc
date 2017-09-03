@@ -11,6 +11,7 @@ Plugin 'vim-airline/vim-airline'  " status bar
 Plugin 'pangloss/vim-javascript'  " js syntax highlighting
 Plugin 'mxw/vim-jsx'              " jsx syntax highlighting
 Plugin 'Valloric/YouCompleteMe'   " autocomplete
+Plugin 'scrooloose/nerdtree'      " file explorer
 call vundle#end()
 filetype plugin indent on
 
@@ -53,6 +54,8 @@ let mapleader=","
 
 " fuzzy search
 nnoremap <leader>a :CtrlP<CR>
+" show/hide file tree
+nnoremap <leader>f :NERDTreeToggle<CR>
 " toggle relative/absolute line numbers
 nnoremap <leader>r :call ToggleNumber()<CR>
 " Make it easy to edit and source vimrc
@@ -99,6 +102,18 @@ let g:jsx_ext_required = 0
 " Plugin  - mxw/vim-jsx {{{
 
 let g:javascript_plugin_flow = 1
+
+" }}}
+" Plugin scrooloose/nerdtree {{{
+
+augroup nerdtree
+        autocmd!
+        " Close vim if only window open is nerdtree
+        autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+        " If no file is specified when starting vim, open nerdtree
+        autocmd StdinReadPre * let s:std_in=1
+        autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+augroup END
 
 " }}}
 " Custom Functions {{{
