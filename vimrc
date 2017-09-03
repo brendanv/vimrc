@@ -12,6 +12,7 @@ Plugin 'pangloss/vim-javascript'  " js syntax highlighting
 Plugin 'mxw/vim-jsx'              " jsx syntax highlighting
 Plugin 'Valloric/YouCompleteMe'   " autocomplete
 Plugin 'scrooloose/nerdtree'      " file explorer
+Plugin 'tomtom/tcomment_vim'      " easily comment/uncomment lines
 call vundle#end()
 filetype plugin indent on
 
@@ -109,12 +110,12 @@ let g:ctrlp_switch_buffer = 0
 let g:jsx_ext_required = 0
 
 " }}}
-" Plugin  - mxw/vim-jsx {{{
+" Plugin - mxw/vim-jsx {{{
 
 let g:javascript_plugin_flow = 1
 
 " }}}
-" Plugin scrooloose/nerdtree {{{
+" Plugin - scrooloose/nerdtree {{{
 
 augroup nerdtree
   autocmd!
@@ -124,6 +125,12 @@ augroup nerdtree
   autocmd StdinReadPre * let s:std_in=1
   autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 augroup END
+
+" }}}
+" Plugin - tomtom/tcomment_vim {{{
+
+nnoremap <C-_> :TComment<CR>
+vnoremap <C-_> :TComment<CR>
 
 " }}}
 " Custom Functions {{{
