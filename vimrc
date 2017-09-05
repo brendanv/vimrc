@@ -41,6 +41,7 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab         " tabs are spaces
 set smarttab          " be smart
+set scrolloff=5       " scroll when cursor is 5 lines from top/bottom
 
 " }}}
 " Search {{{
@@ -60,7 +61,7 @@ let mapleader=","
 " fuzzy search
 nnoremap <leader>a :CtrlP<CR>
 " show/hide file tree
-nnoremap <leader>f :NERDTreeToggle<CR>
+nnoremap <leader>f :NERDTreeFind<CR>
 " Make it easy to edit and source vimrc
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
@@ -140,11 +141,23 @@ vnoremap <C-_> :TComment<CR>
 " }}}
 " Plugin - flowtype/vim-flow {{{
 
+" Close flow errors quickfix window if there are no errors
+let g:flow#autoclose = 1
 augroup vimflow
   autocmd!
   " Should put this in a JS-specific file, but it's ok for now
   autocmd FileType javascript nnoremap <buffer> gD :FlowJumpToDef<CR>
 augroup END
+
+" }}}
+" Plugin - Valloric/YouCompleteMe {{{
+
+" Close doc preview after completing method names
+let g:ycm_autoclose_preview_window_after_completion = 1
+" JS module names appear in comments so this is useful
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+" Don't cache omnifunc results because flow results can change
+let g:ycm_cache_omnifunc = 0
 
 " }}}
 " Custom Functions {{{
