@@ -11,10 +11,11 @@ Plugin 'vim-airline/vim-airline'  " status bar
 Plugin 'pangloss/vim-javascript'  " js syntax highlighting
 Plugin 'mxw/vim-jsx'              " jsx syntax highlighting
 Plugin 'Valloric/YouCompleteMe'   " autocomplete
-Plugin 'scrooloose/nerdtree'      " file explorer
 Plugin 'tomtom/tcomment_vim'      " easily comment/uncomment lines
 Plugin 'airblade/vim-gitgutter'   " git status in sidebar
 Plugin 'flowtype/vim-flow'        " flow
+Plugin 'Shougo/vimfiler.vim'      " File explorer
+Plugin 'Shougo/unite.vim'         " Dependency for vimfiler.vim
 call vundle#end()
 filetype plugin indent on
 
@@ -61,7 +62,7 @@ let mapleader=","
 " fuzzy search
 nnoremap <leader>a :CtrlP<CR>
 " show/hide file tree
-nnoremap <leader>f :NERDTreeFind<CR>
+nnoremap <leader>f :VimFilerExplore -find -force-hide<CR>
 " Make it easy to edit and source vimrc
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
@@ -125,18 +126,6 @@ let g:jsx_ext_required = 0
 let g:javascript_plugin_flow = 1
 
 " }}}
-" Plugin - scrooloose/nerdtree {{{
-
-augroup nerdtree
-  autocmd!
-  " Close vim if only window open is nerdtree
-  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-  " If no file is specified when starting vim, open nerdtree
-  autocmd StdinReadPre * let s:std_in=1
-  autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-augroup END
-
-" }}}
 " Plugin - tomtom/tcomment_vim {{{
 
 nnoremap <C-_> :TComment<CR>
@@ -162,6 +151,18 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
 " Don't cache omnifunc results because flow results can change
 let g:ycm_cache_omnifunc = 0
+
+" }}}
+" Plugin - Shougo/vimfiler.vim {{{
+
+" Replace default file explorer
+let g:vimfiler_as_default_explorer = 1
+" Change expand/collapse icons
+let g:vimfiler_tree_opened_icon = '▾'
+let g:vimfiler_tree_closed_icon = '▸'
+let g:vimfiler_file_icon = '-'
+let g:vimfiler_marked_file_icon = '*'
+let g:vimfiler_tree_leaf_icon = ' '
 
 " }}}
 " Custom Functions {{{
