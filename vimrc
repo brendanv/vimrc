@@ -89,6 +89,10 @@ augroup uiconfig
   " Show absolute line numbers in insert mode only
   autocmd InsertEnter * set norelativenumber
   autocmd InsertLeave * set relativenumber
+  " Trim trailing whitespace on save
+  autocmd FileType c,cabal,cpp,haskell,javascript,php,python,readme,text,vim
+        \ autocmd BufWritePre <buffer>
+        \ :call <SID>TrimWhitespace()
 augroup END
 
 " }}}
@@ -161,6 +165,12 @@ let g:ycm_cache_omnifunc = 0
 
 " }}}
 " Custom Functions {{{
+
+fun! <SID>TrimWhitespace()
+  let l:save = winsaveview()
+  %s/\s\+$//e
+  call winrestview(l:save)
+endfun
 
 " }}}
 " vim:foldmethod=marker:foldlevel=0
