@@ -23,6 +23,7 @@ filetype plugin indent on
 " Colors {{{
 
 colorscheme base16-tomorrow-night
+set bg=dark
 
 " }}}
 " UI Config {{{
@@ -43,6 +44,9 @@ set shiftwidth=2
 set expandtab         " tabs are spaces
 set smarttab          " be smart
 set scrolloff=5       " scroll when cursor is 5 lines from top/bottom
+set foldmethod=syntax " Fold based on code syntax
+set foldlevelstart=10 " Open most folds by default when opening buffers
+set foldnestmax=10    " Don't next folds too much
 
 " }}}
 " Search {{{
@@ -79,8 +83,10 @@ nnoremap k gk
 " open/close folds with space
 nnoremap <Space> za
 " Move left and right between splits
-nnoremap <C-j> <C-w><Left>
-nnoremap <C-k> <C-w><Right>
+nnoremap <C-h> <C-w><Left>
+nnoremap <C-l> <C-w><Right>
+nnoremap <C-j> <C-w><Down>
+nnoremap <C-k> <C-w><Up>
 
 " }}}
 " Autogroups {{{
