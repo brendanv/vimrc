@@ -10,7 +10,7 @@ Plugin 'chriskempson/base16-vim'  " color schemes
 Plugin 'vim-airline/vim-airline'  " status bar
 Plugin 'pangloss/vim-javascript'  " js syntax highlighting
 Plugin 'mxw/vim-jsx'              " jsx syntax highlighting
-Plugin 'Valloric/YouCompleteMe'   " autocomplete
+Plugin 'Shougo/neocomplete.vim'   " autocomplete
 Plugin 'tomtom/tcomment_vim'      " easily comment/uncomment lines
 Plugin 'airblade/vim-gitgutter'   " git status in sidebar
 Plugin 'flowtype/vim-flow'        " flow
@@ -143,16 +143,6 @@ augroup vimflow
 augroup END
 
 " }}}
-" Plugin - Valloric/YouCompleteMe {{{
-
-" Close doc preview after completing method names
-let g:ycm_autoclose_preview_window_after_completion = 1
-" JS module names appear in comments so this is useful
-let g:ycm_collect_identifiers_from_comments_and_strings = 1
-" Don't cache omnifunc results because flow results can change
-let g:ycm_cache_omnifunc = 0
-
-" }}}
 " Plugin - Shougo/vimfiler.vim {{{
 
 " Replace default file explorer
@@ -163,6 +153,19 @@ let g:vimfiler_tree_closed_icon = '▸'
 let g:vimfiler_file_icon = '-'
 let g:vimfiler_marked_file_icon = '*'
 let g:vimfiler_tree_leaf_icon = ' '
+
+" }}}
+" Plugin - Shougo/neocomplete {{{
+
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+" These options basically replicate Atom/Nuclide's behavior for autcomplete.
+" Select the first item in the list automatically, Tab or Enter confirms.
+let g:neocomplete#enable_auto_select = 1
+inoremap <expr><TAB>  pumvisible() ? "\<C-y>" : "\<TAB>"
+inoremap <expr><CR>  pumvisible() ? "\<C-y>" : "\<CR>"
 
 " }}}
 " Custom Functions {{{
