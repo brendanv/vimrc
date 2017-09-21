@@ -16,6 +16,7 @@ Plugin 'airblade/vim-gitgutter'   " git status in sidebar
 Plugin 'flowtype/vim-flow'        " flow
 Plugin 'Shougo/vimfiler.vim'      " File explorer
 Plugin 'Shougo/unite.vim'         " Dependency for vimfiler.vim
+Plugin 'Raimondi/delimitMate'     " paren + bracket matching
 call vundle#end()
 filetype plugin indent on
 
@@ -79,6 +80,8 @@ nnoremap <leader>cd :cd %:p:h<cr>:pwd<cr>
 " Movement {{{
 
 inoremap jk <Esc>
+" Experimental: semicolon + enter moves semicolon to end of the line
+inoremap ;<CR> <end>;<CR>
 " move vertically by visual line
 nnoremap j gj
 nnoremap k gk
