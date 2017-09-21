@@ -35,6 +35,8 @@ set ruler             " show line/col number
 set showcmd           " command
 set cursorline        " highlight current lint
 set wildmenu          " graphical autocomplete menu
+"" First tab completes longest match, second tab begins cycling through the list
+set wildmode=longest:full,full
 set lazyredraw        " redraw only when necessary
 set showmatch         " highlight matching paren/bracket
 set modelines=1       " check last line only for file-specific config
@@ -96,6 +98,10 @@ augroup uiconfig
   " Show absolute line numbers in insert mode only
   autocmd InsertEnter * set norelativenumber
   autocmd InsertLeave * set relativenumber
+  " put cursor at previous position on file open
+  autocmd BufReadPost * exe "normal! g`\""
+  " resize splits when vim is resized
+  autocmd VimResized * wincmd =
   " Trim trailing whitespace on save
   autocmd FileType c,cabal,cpp,haskell,javascript,php,python,readme,text,vim
         \ autocmd BufWritePre <buffer>
