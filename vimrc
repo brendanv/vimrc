@@ -24,11 +24,11 @@ call plug#begin('~/.vim/plugged')
 Plug 'wincent/command-t', {
     \   'do': 'cd ruby/command-t/ext/command-t && ruby extconf.rb && make'
     \ }
-Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'flowtype/vim-flow'
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'mxw/vim-jsx', { 'for': 'javascript' }
+Plug 'flowtype/vim-flow', { 'for': 'javascript' }
 Plug 'Shougo/vimfiler.vim' |  Plug 'Shougo/unite.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'chriskempson/base16-vim'
@@ -147,6 +147,12 @@ else
     let &t_SI = "\<Esc>]50;CursorShape=1\x7"
     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
+
+
+" --------------------------------------------------------------
+" |                                                configairline
+" --------------------------------------------------------------
+let g:airline_theme='deus'
 
 
 " --------------------------------------------------------------
