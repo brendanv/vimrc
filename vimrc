@@ -15,6 +15,7 @@
 " - configvimflow
 " - configcustomfunctions
 " - configsupertab
+" - configdelimitmate
 
 
 " --------------------------------------------------------------
@@ -33,6 +34,7 @@ Plug 'Shougo/vimfiler.vim' |  Plug 'Shougo/unite.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'chriskempson/base16-vim'
 Plug 'ervandew/supertab'
+Plug 'raimondi/delimitmate'
 call plug#end()
 
 
@@ -205,6 +207,13 @@ augroup END
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabLongestEnhanced=1
 let g:SuperTabLongestHighlight=1
+
+
+" --------------------------------------------------------------
+" |                                            configdelimitmate
+" --------------------------------------------------------------
+" delimitMateCR inserts CR and will space things nicely if inside brackets
+imap <expr><CR>  pumvisible() ? "\<C-y>" : "\<Plug>delimitMateCR"
 
 
 " --------------------------------------------------------------
