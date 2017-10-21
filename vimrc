@@ -35,6 +35,7 @@ Plug 'tomtom/tcomment_vim'
 Plug 'chriskempson/base16-vim'
 Plug 'ervandew/supertab'
 Plug 'raimondi/delimitmate'
+Plug 'easymotion/vim-easymotion'
 call plug#end()
 
 
@@ -62,6 +63,7 @@ syntax enable
 set number            " line numbers
 set relativenumber
 set ruler             " show line/col number
+set nowrap
 set showcmd           " command
 set cursorline        " highlight current lint
 set wildmenu          " graphical autocomplete menu
@@ -160,7 +162,7 @@ let g:airline_theme='deus'
 " --------------------------------------------------------------
 " |                                               configcommandt
 " --------------------------------------------------------------
-let g:CommandTWildIgnore=&wildignore . ",*/node_modules/*,*/build/*,*/bin/*"
+let g:CommandTWildIgnore=&wildignore . ",*/node_modules/*,*/build/*,*/bin/*,*/coverage/*"
 let g:CommandTSmartCase=1
 
 
@@ -214,6 +216,16 @@ let g:SuperTabLongestHighlight=1
 " --------------------------------------------------------------
 " delimitMateCR inserts CR and will space things nicely if inside brackets
 imap <expr><CR>  pumvisible() ? "\<C-y>" : "\<Plug>delimitMateCR"
+
+
+" --------------------------------------------------------------
+" |                                             configeasymotion
+" --------------------------------------------------------------
+let g:EasyMotion_smartcase = 1
+let g:EasyMotion_do_mapping = 0 " Disable defaults
+nmap s <Plug>(easymotion-overwin-f)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
 
 
 " --------------------------------------------------------------
