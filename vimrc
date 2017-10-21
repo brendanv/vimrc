@@ -14,6 +14,7 @@
 " - configvimfiler
 " - configvimflow
 " - configcustomfunctions
+" - configsupertab
 
 
 " --------------------------------------------------------------
@@ -31,6 +32,7 @@ Plug 'flowtype/vim-flow'
 Plug 'Shougo/vimfiler.vim' |  Plug 'Shougo/unite.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'chriskempson/base16-vim'
+Plug 'ervandew/supertab'
 call plug#end()
 
 
@@ -47,7 +49,8 @@ set bg=dark
 " Create persistent undo files and store them all in the same directory
 set undofile
 set undodir=~/.vim/undodir
-set lazyredraw        " redraw only when necessary
+set lazyredraw               " redraw only when necessary
+set completeopt=longest,menu " complete to longest match, show menu
 
 
 " --------------------------------------------------------------
@@ -188,6 +191,14 @@ augroup vimflow
   " Should put this in a JS-specific file, but it's ok for now
   autocmd FileType javascript nnoremap <buffer> gD :FlowJumpToDef<CR>
 augroup END
+
+
+" --------------------------------------------------------------
+" |                                               configsupertab
+" --------------------------------------------------------------
+let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabLongestEnhanced=1
+let g:SuperTabLongestHighlight=1
 
 
 " --------------------------------------------------------------
