@@ -1,7 +1,14 @@
 Problems encountered, and fixes:
 
-Failing to edit git commit messages {{{
+" --------------------------------------------------------------
+" |                                                   installing
+" --------------------------------------------------------------
+`brew install macvim --with-cscope --with-lua --with-ruby --with-override-system-vim`
 
+
+" --------------------------------------------------------------
+" |                          failing to edit git commit messages
+" --------------------------------------------------------------
 $ git commit -a
 error: There was a problem with the editor 'vi'.
 Please supply the message using either -m or -F option.
@@ -10,6 +17,3 @@ Seems to be a problem with Vundle.
 Solution: git config --global core.editor $(which vim)
 https://github.com/VundleVim/Vundle.vim/issues/167
 
-}}}
-
-vim:foldmethod=marker:foldlevel=0
