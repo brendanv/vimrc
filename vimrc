@@ -13,3 +13,17 @@ set t_ut=
 set t_Co=256
 set background=dark
 colorscheme palenight
+
+" --------------------------------------------------------------
+" |                                               configmovement
+" --------------------------------------------------------------
+inoremap jk <Esc>
+" move easily between splits
+nnoremap <C-h> <C-w><Left>
+nnoremap <C-l> <C-w><Right>
+nnoremap <C-j> <C-w><Down>
+nnoremap <C-k> <C-w><Up>
+" move vertically by visual line
+nnoremap j gj
+nnoremap k gk
+
