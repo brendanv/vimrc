@@ -56,6 +56,15 @@ set foldnestmax=10    " Don't nest folds too much
 set formatoptions+=j  " Delete comment character when joining commented lines
 
 " --------------------------------------------------------------
+" |                                                 configeditor
+" --------------------------------------------------------------
+" Create persistent undo files and store them all in the same directory
+set undofile
+set undodir=~/.vim/undodir
+set lazyredraw               " redraw only when necessary
+set completeopt=longest,menu " complete to longest match, show menu
+
+" --------------------------------------------------------------
 " |                                                configairline
 " --------------------------------------------------------------
 let g:airline_theme='base16'
