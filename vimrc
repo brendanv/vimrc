@@ -65,8 +65,36 @@ set lazyredraw               " redraw only when necessary
 set completeopt=longest,menu " complete to longest match, show menu
 
 " --------------------------------------------------------------
+" |                                             configautogroups
+" --------------------------------------------------------------
+
+augroup uiconfig
+  autocmd!
+  " Show absolute line numbers in insert mode only
+  autocmd InsertEnter * set norelativenumber
+  autocmd InsertLeave * set relativenumber
+  " put cursor at previous position on file open
+  autocmd BufReadPost * exe "normal! g`\""
+  " resize splits when vim is resized
+  autocmd VimResized * wincmd =
+  " Trim trailing whitespace on save
+  autocmd FileType c,cabal,cpp,haskell,javascript,php,python,readme,text,vim
+        \ autocmd BufWritePre <buffer>
+        \ :call <SID>TrimWhitespace()
+augroup END
+
+
+" --------------------------------------------------------------
 " |                                                configairline
 " --------------------------------------------------------------
 let g:airline_theme='base16'
 
+" --------------------------------------------------------------
+" |                                        configcustomfunctions
+" --------------------------------------------------------------
+fun! <SID>TrimWhitespace()
+  let l:save = winsaveview()
+  %s/\s\+$//e
+  call winrestview(l:save)
+endfun
 
