@@ -30,6 +30,10 @@ nnoremap <C-k> <C-w><Up>
 " move vertically by visual line
 nnoremap j gj
 nnoremap k gk
+" space collapses/expands folds
+nnoremap <space> za
+" highlight last inserted text
+nnoremap gV `[v`]
 
 " --------------------------------------------------------------
 " |                                                     configui
@@ -38,8 +42,7 @@ syntax enable
 set number            " line numbers
 set relativenumber
 set ruler             " show line/col number
-set nowrap
-set showcmd           " command
+set nowrap            " no line wrapping
 set cursorline        " highlight current lint
 set wildmenu          " graphical autocomplete menu
 "" First tab completes longest match, second tab begins cycling through the list
@@ -47,12 +50,13 @@ set wildmode=longest:full,full
 set showmatch         " highlight matching paren/bracket
 set modelines=0
 set tabstop=2         " visual spaces per tab
-set softtabstop=2
-set shiftwidth=2
+set softtabstop=2     " number of spaces in tab when editing
+set shiftwidth=2      " spaces for automatic indentation
 set autoindent
 set expandtab         " tabs are spaces
 set smarttab          " be smart
 set scrolloff=5       " scroll when cursor is 5 lines from top/bottom
+set foldenable				" enable code folding
 set foldmethod=syntax " Fold based on code syntax
 set foldlevelstart=10 " Open most folds by default when opening buffers
 set foldnestmax=10    " Don't nest folds too much
@@ -66,6 +70,15 @@ set undofile
 set undodir=~/.vim/undodir
 set lazyredraw               " redraw only when necessary
 set completeopt=longest,menu " complete to longest match, show menu
+
+" --------------------------------------------------------------
+" |                                                 configsearch
+" --------------------------------------------------------------
+set incsearch   " search as you type
+set hlsearch    " highlight matches
+set ignorecase  " ignore case when searching
+set smartcase   " unless it has a capital letter
+set nohlsearch  " clear search
 
 " --------------------------------------------------------------
 " |                                             configautogroups
