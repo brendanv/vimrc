@@ -10,6 +10,7 @@ Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 Plug 'ervandew/supertab'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
 
 set term=screen-256color
@@ -17,6 +18,18 @@ set t_ut=
 set t_Co=256
 set background=dark
 colorscheme palenight
+
+" --------------------------------------------------------------
+" |                                                 configleader
+" --------------------------------------------------------------
+let mapleader=','
+" make it easy to edit and source vimrc
+nnoremap <leader>ev :vsplit $MYVIMRC<CR>
+nnoremap <leader>sv :source $MYVIMRC<CR>
+" make it easy to turn off search highlighting
+nnoremap <leader><space> :nohlsearch<CR>
+nnoremap <leader>t :CtrlP<CR>
+
 
 " --------------------------------------------------------------
 " |                                               configmovement
