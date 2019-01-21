@@ -12,6 +12,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'nathangrigg/vim-beancount', { 'for': 'beancount' }
+Plug 'tpope/vim-vinegar'
 call plug#end()
 
 set term=screen-256color
@@ -30,7 +31,6 @@ nnoremap <leader>sv :source $MYVIMRC<CR>
 " make it easy to turn off search highlighting
 nnoremap <leader><space> :nohlsearch<CR>
 nnoremap <leader>t :CtrlP<CR>
-
 
 " --------------------------------------------------------------
 " |                                               configmovement
