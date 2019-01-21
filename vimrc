@@ -6,6 +6,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 Plug 'drewtempelmeyer/palenight.vim'
+Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 set term=screen-256color
@@ -53,5 +54,10 @@ set foldmethod=syntax " Fold based on code syntax
 set foldlevelstart=10 " Open most folds by default when opening buffers
 set foldnestmax=10    " Don't nest folds too much
 set formatoptions+=j  " Delete comment character when joining commented lines
+
+" --------------------------------------------------------------
+" |                                                configairline
+" --------------------------------------------------------------
+let g:airline_theme='base16'
 
 
