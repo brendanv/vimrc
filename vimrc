@@ -11,6 +11,7 @@ Plug 'ervandew/supertab'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'nathangrigg/vim-beancount', { 'for': 'beancount' }
 call plug#end()
 
 set term=screen-256color
@@ -107,7 +108,7 @@ augroup uiconfig
   " resize splits when vim is resized
   autocmd VimResized * wincmd =
   " Trim trailing whitespace on save
-  autocmd FileType c,cabal,cpp,haskell,javascript,php,python,readme,text,vim
+  autocmd FileType c,cabal,cpp,haskell,javascript,php,python,readme,text,vim,beancount
         \ autocmd BufWritePre <buffer>
         \ :call <SID>TrimWhitespace()
 augroup END
