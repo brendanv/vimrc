@@ -31,6 +31,10 @@ nnoremap <leader>sv :source $MYVIMRC<CR>
 " make it easy to turn off search highlighting
 nnoremap <leader><space> :nohlsearch<CR>
 nnoremap <leader>t :CtrlP<CR>
+" switch CWD to path of current buffer
+nnoremap <leader>cd :cd %:p:h<cr>:pwd<cr>
+" Toggle paste mode on and off
+map <leader>pp :setlocal paste!<cr>
 
 " --------------------------------------------------------------
 " |                                               configmovement
@@ -75,6 +79,7 @@ set foldmethod=syntax " Fold based on code syntax
 set foldlevelstart=10 " Open most folds by default when opening buffers
 set foldnestmax=10    " Don't nest folds too much
 set formatoptions+=j  " Delete comment character when joining commented lines
+set autoread          " Reload file
 
 " --------------------------------------------------------------
 " |                                                 configeditor
@@ -111,6 +116,7 @@ augroup uiconfig
   autocmd FileType c,cabal,cpp,haskell,javascript,php,python,readme,text,vim,beancount
         \ autocmd BufWritePre <buffer>
         \ :call <SID>TrimWhitespace()
+  autocmd FocusGained,BufEnter * :checktime
 augroup END
 
 
