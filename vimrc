@@ -13,6 +13,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'nathangrigg/vim-beancount', { 'for': 'beancount' }
 Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-commentary'
 call plug#end()
 
 set term=screen-256color
@@ -90,6 +91,9 @@ set undodir=~/.vim/undodir
 set lazyredraw               " redraw only when necessary
 set completeopt=longest,menu " complete to longest match, show menu
 
+" In insert mode, convert the word under the cursor to uppercase
+inoremap <C-u> <esc>viwUea
+
 " --------------------------------------------------------------
 " |                                                 configsearch
 " --------------------------------------------------------------
@@ -134,3 +138,10 @@ fun! <SID>TrimWhitespace()
   call winrestview(l:save)
 endfun
 
+" --------------------------------------------------------------
+" |                                             configcommentary
+" --------------------------------------------------------------
+" vim recognized <C-/> as <C-_>
+" In both normal and visual mode make <C-/> (un)comment the line
+nnoremap <C-_> :Commentary<cr>
+vnoremap <C-_> :Commentary<cr>
