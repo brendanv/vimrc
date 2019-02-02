@@ -10,10 +10,10 @@ Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 Plug 'ervandew/supertab'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'nathangrigg/vim-beancount', { 'for': 'beancount' }
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-commentary'
+Plug 'junegunn/fzf' | Plug 'junegunn/fzf.vim'
 call plug#end()
 
 set term=screen-256color
@@ -31,7 +31,9 @@ nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 " make it easy to turn off search highlighting
 nnoremap <leader><space> :nohlsearch<CR>
-nnoremap <leader>t :CtrlP<CR>
+" Open fzf search pane for local files as well as recent buffers
+nnoremap <leader>t :Files<CR>
+nnoremap <leader>b :Buffers<CR>
 " switch CWD to path of current buffer
 nnoremap <leader>cd :cd %:p:h<cr>:pwd<cr>
 " Toggle paste mode on and off
@@ -145,3 +147,22 @@ endfun
 " In both normal and visual mode make <C-/> (un)comment the line
 nnoremap <C-_> :Commentary<cr>
 vnoremap <C-_> :Commentary<cr>
+
+" --------------------------------------------------------------
+" |                                                    configfzf
+" --------------------------------------------------------------
+" Update fzf pane to match current color scheme
+let g:fzf_colors =
+  \ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
