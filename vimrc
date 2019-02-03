@@ -1,4 +1,21 @@
+" Table of Contents
+"   config-vim-plug
+"   config-ui
+"   config-leader
+"   config-movement
+"   config-editor
+"   config-search
+"   config-autogroup
+"   config-airline
+"   config-custom-functions
+"   config-commentary
+"   config-fzf
+
 set nocompatible
+
+" --------------------------------------------------------------
+" |                                              config-vim-plug
+" --------------------------------------------------------------
 
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -19,14 +36,40 @@ Plug 'junegunn/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'terryma/vim-multiple-cursors'
 call plug#end()
 
+" --------------------------------------------------------------
+" |                                                    config-ui
+" --------------------------------------------------------------
+" Colors!
 set term=screen-256color
 set t_ut=
 set t_Co=256
 set background=dark
 colorscheme palenight
 
+syntax enable
+set number            " line numbers
+set relativenumber
+set ruler             " show line/col number
+set nowrap            " no line wrapping
+set linebreak         " if wrapping is enabled, break between words
+set cursorline        " highlight current lint
+set showmatch         " highlight matching paren/bracket
+set modelines=0
+set tabstop=2         " visual spaces per tab
+set softtabstop=2     " number of spaces in tab when editing
+set shiftwidth=2      " spaces for automatic indentation
+set autoindent
+set expandtab         " tabs are spaces
+set smarttab          " be smart
+set scrolloff=5       " scroll when cursor is 5 lines from top/bottom
+set foldenable				" enable code folding
+set foldmethod=syntax " Fold based on code syntax
+set foldlevelstart=10 " Open most folds by default when opening buffers
+set foldnestmax=10    " Don't nest folds too much
+set visualbell        " Don't make noise
+
 " --------------------------------------------------------------
-" |                                                 configleader
+" |                                                config-leader
 " --------------------------------------------------------------
 let mapleader=','
 " make it easy to edit and source vimrc
@@ -43,7 +86,7 @@ nnoremap <leader>cd :cd %:p:h<cr>:pwd<cr>
 map <leader>pp :setlocal paste!<cr>
 
 " --------------------------------------------------------------
-" |                                               configmovement
+" |                                              config-movement
 " --------------------------------------------------------------
 inoremap jk <Esc>
 " move easily between splits
@@ -59,38 +102,9 @@ nnoremap <space> za
 " highlight last inserted text
 nnoremap gV `[v`]
 
-" --------------------------------------------------------------
-" |                                                     configui
-" --------------------------------------------------------------
-syntax enable
-set number            " line numbers
-set relativenumber
-set ruler             " show line/col number
-set nowrap            " no line wrapping
-set cursorline        " highlight current lint
-set wildmenu          " graphical autocomplete menu
-"" First tab completes longest match, second tab begins cycling through the list
-set wildmode=longest:full,full
-set showmatch         " highlight matching paren/bracket
-set modelines=0
-set tabstop=2         " visual spaces per tab
-set softtabstop=2     " number of spaces in tab when editing
-set shiftwidth=2      " spaces for automatic indentation
-set autoindent
-set expandtab         " tabs are spaces
-set smarttab          " be smart
-set scrolloff=5       " scroll when cursor is 5 lines from top/bottom
-set foldenable				" enable code folding
-set foldmethod=syntax " Fold based on code syntax
-set foldlevelstart=10 " Open most folds by default when opening buffers
-set foldnestmax=10    " Don't nest folds too much
-set formatoptions+=j  " Delete comment character when joining commented lines
-set autoread          " Reload file
-set visualbell        " Don't make noise
-set history=1000      " Store more :cmdline history
 
 " --------------------------------------------------------------
-" |                                                 configeditor
+" |                                                config-editor
 " --------------------------------------------------------------
 " Create persistent undo files and store them all in the same directory
 " Undo directory should be stored next to the vimrc.
@@ -108,23 +122,29 @@ if !isdirectory(backuppath)
   silent call mkdir(backuppath, 'p')
 endif
 let &backupdir=backuppath
+
+set formatoptions+=j         " Delete comment character when joining commented lines
+set autoread                 " Reload file
+set history=1000             " Store more :cmdline history
 set lazyredraw               " redraw only when necessary
 set completeopt=longest,menu " complete to longest match, show menu
+set wildmenu                 " graphical autocomplete menu
+"" First tab completes longest match, second tab begins cycling through the list
+set wildmode=longest:full,full
 
 " In insert mode, convert the word under the cursor to uppercase
 inoremap <C-u> <esc>viwUea
 
 " --------------------------------------------------------------
-" |                                                 configsearch
+" |                                                config-search
 " --------------------------------------------------------------
 set incsearch   " search as you type
 set hlsearch    " highlight matches
 set ignorecase  " ignore case when searching
 set smartcase   " unless it has a capital letter
-set nohlsearch  " clear search
 
 " --------------------------------------------------------------
-" |                                             configautogroups
+" |                                             config-autogroup
 " --------------------------------------------------------------
 
 augroup uiconfig
@@ -143,14 +163,13 @@ augroup uiconfig
   autocmd FocusGained,BufEnter * :checktime
 augroup END
 
-
 " --------------------------------------------------------------
-" |                                                configairline
+" |                                               config-airline
 " --------------------------------------------------------------
 let g:airline_theme='base16'
 
 " --------------------------------------------------------------
-" |                                        configcustomfunctions
+" |                                      config-custom-functions
 " --------------------------------------------------------------
 fun! <SID>TrimWhitespace()
   let l:save = winsaveview()
@@ -159,7 +178,7 @@ fun! <SID>TrimWhitespace()
 endfun
 
 " --------------------------------------------------------------
-" |                                             configcommentary
+" |                                            config-commentary
 " --------------------------------------------------------------
 " vim recognized <C-/> as <C-_>
 " In both normal and visual mode make <C-/> (un)comment the line
@@ -167,7 +186,7 @@ nnoremap <C-_> :Commentary<cr>
 vnoremap <C-_> :Commentary<cr>
 
 " --------------------------------------------------------------
-" |                                                    configfzf
+" |                                                   config-fzf
 " --------------------------------------------------------------
 " Update fzf pane to match current color scheme
 let g:fzf_colors =
