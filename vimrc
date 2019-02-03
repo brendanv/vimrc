@@ -16,6 +16,7 @@ Plug 'nathangrigg/vim-beancount', { 'for': 'beancount' }
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-commentary'
 Plug 'junegunn/fzf' | Plug 'junegunn/fzf.vim'
+Plug 'terryma/vim-multiple-cursors'
 call plug#end()
 
 set term=screen-256color
