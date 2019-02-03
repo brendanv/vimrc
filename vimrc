@@ -1,3 +1,5 @@
+set nocompatible
+
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -83,6 +85,8 @@ set foldlevelstart=10 " Open most folds by default when opening buffers
 set foldnestmax=10    " Don't nest folds too much
 set formatoptions+=j  " Delete comment character when joining commented lines
 set autoread          " Reload file
+set visualbell        " Don't make noise
+set history=1000      " Store more :cmdline history
 
 " --------------------------------------------------------------
 " |                                                 configeditor
