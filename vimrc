@@ -97,6 +97,12 @@ if !isdirectory(undopath)
 endif
 let &undodir=undopath
 set undofile
+" Same thing for backups
+let backuppath = vimrcdir.'/backups/'
+if !isdirectory(backuppath)
+  silent call mkdir(backuppath, 'p')
+endif
+let &backupdir=backuppath
 set lazyredraw               " redraw only when necessary
 set completeopt=longest,menu " complete to longest match, show menu
 
