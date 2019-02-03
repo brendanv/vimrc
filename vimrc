@@ -34,6 +34,7 @@ Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-commentary'
 Plug 'junegunn/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-vinegar'
 call plug#end()
 
 " --------------------------------------------------------------
@@ -84,6 +85,8 @@ nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>cd :cd %:p:h<cr>:pwd<cr>
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
+" Find current file in directory view
+nmap <leader>f <Plug>VinegarUp
 
 " --------------------------------------------------------------
 " |                                              config-movement
