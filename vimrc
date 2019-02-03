@@ -88,8 +88,15 @@ set autoread          " Reload file
 " |                                                 configeditor
 " --------------------------------------------------------------
 " Create persistent undo files and store them all in the same directory
+" Undo directory should be stored next to the vimrc.
+let vimrcdir = fnamemodify($MYVIMRC, ':p:h')
+let undopath = vimrcdir.'/undo/'
+" Create the dir if it doesn't exist
+if !isdirectory(undopath)
+  silent call mkdir(undopath, 'p')
+endif
+let &undodir=undopath
 set undofile
-set undodir=~/.vim/undodir
 set lazyredraw               " redraw only when necessary
 set completeopt=longest,menu " complete to longest match, show menu
 
