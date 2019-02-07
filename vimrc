@@ -35,6 +35,7 @@ Plug 'tpope/vim-commentary'
 Plug 'junegunn/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-vinegar'
+Plug 'mhinz/vim-startify'
 call plug#end()
 
 " --------------------------------------------------------------
