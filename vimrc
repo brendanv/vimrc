@@ -36,6 +36,7 @@ Plug 'junegunn/fzf', { 'do': './install --all' } | Plug 'junegunn/fzf.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-vinegar'
 Plug 'mhinz/vim-startify'
+Plug 'pangloss/vim-javascript' | Plug 'mxw/vim-jsx'
 call plug#end()
 
 " --------------------------------------------------------------
