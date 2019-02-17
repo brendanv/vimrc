@@ -32,7 +32,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'nathangrigg/vim-beancount', { 'for': 'beancount' }
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-commentary'
-Plug 'junegunn/fzf' | Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': './install --all' } | Plug 'junegunn/fzf.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-vinegar'
 Plug 'mhinz/vim-startify'
