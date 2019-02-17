@@ -158,7 +158,7 @@ augroup uiconfig
   autocmd InsertEnter * set norelativenumber
   autocmd InsertLeave * set relativenumber
   " put cursor at previous position on file open
-  autocmd BufReadPost * exe "normal! g`\""
+  autocmd BufReadPost * silent! exe "normal! g`\""
   " resize splits when vim is resized
   autocmd VimResized * wincmd =
   " Trim trailing whitespace on save
