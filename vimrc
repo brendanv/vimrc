@@ -37,6 +37,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-vinegar'
 Plug 'mhinz/vim-startify'
 Plug 'pangloss/vim-javascript' | Plug 'mxw/vim-jsx'
+Plug 'ludovicchabant/vim-gutentags'
 call plug#end()
 
 " --------------------------------------------------------------
@@ -83,6 +84,7 @@ nnoremap <leader><space> :nohlsearch<CR>
 " Open fzf search pane for local files as well as recent buffers
 nnoremap <leader>t :Files<CR>
 nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>c :Tags<CR>
 " switch CWD to path of current buffer
 nnoremap <leader>cd :cd %:p:h<cr>:pwd<cr>
 " Toggle paste mode on and off
