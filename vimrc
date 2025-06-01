@@ -1,22 +1,6 @@
-" Table of Contents
-"   config-vim-plug
-"   config-ui
-"   config-leader
-"   config-movement
-"   config-editor
-"   config-search
-"   config-autogroup
-"   config-airline
-"   config-custom-functions
-"   config-commentary
-"   config-fzf
-
 set nocompatible
 
-" --------------------------------------------------------------
-" |                                              config-vim-plug
-" --------------------------------------------------------------
-
+" vim-plug
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -24,31 +8,19 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-Plug 'drewtempelmeyer/palenight.vim'
-Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
-Plug 'ervandew/supertab'
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
-Plug 'nathangrigg/vim-beancount', { 'for': 'beancount' }
-Plug 'tpope/vim-vinegar'
+Plug 'arcticicestudio/nord-vim'
+Plug 'itchyny/lightline.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-commentary'
-Plug 'junegunn/fzf', { 'do': './install --all' } | Plug 'junegunn/fzf.vim'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'tpope/vim-vinegar'
-Plug 'mhinz/vim-startify'
-Plug 'pangloss/vim-javascript' | Plug 'mxw/vim-jsx'
-Plug 'ludovicchabant/vim-gutentags'
 call plug#end()
 
-" --------------------------------------------------------------
-" |                                                    config-ui
-" --------------------------------------------------------------
-" Colors!
+" UI Config
 set term=screen-256color
 set t_ut=
 set t_Co=256
 set background=dark
-colorscheme palenight
+silent! colorscheme nord
 
 syntax enable
 set number            " line numbers
@@ -66,35 +38,19 @@ set autoindent
 set expandtab         " tabs are spaces
 set smarttab          " be smart
 set scrolloff=5       " scroll when cursor is 5 lines from top/bottom
-set foldenable				" enable code folding
+set foldenable " enable code folding
 set foldmethod=syntax " Fold based on code syntax
 set foldlevelstart=10 " Open most folds by default when opening buffers
 set foldnestmax=10    " Don't nest folds too much
 set visualbell        " Don't make noise
 
-" --------------------------------------------------------------
-" |                                                config-leader
-" --------------------------------------------------------------
-let mapleader=','
-" make it easy to edit and source vimrc
-nnoremap <leader>ev :vsplit $MYVIMRC<CR>
-nnoremap <leader>sv :source $MYVIMRC<CR>
-" make it easy to turn off search highlighting
-nnoremap <leader><space> :nohlsearch<CR>
-" Open fzf search pane for local files as well as recent buffers
-nnoremap <leader>t :Files<CR>
-nnoremap <leader>b :Buffers<CR>
-nnoremap <leader>c :Tags<CR>
-" switch CWD to path of current buffer
-nnoremap <leader>cd :cd %:p:h<cr>:pwd<cr>
-" Toggle paste mode on and off
-map <leader>pp :setlocal paste!<cr>
-" Find current file in directory view
-nmap <leader>f <Plug>VinegarUp
+" Search
+set incsearch   " search as you type
+set hlsearch    " highlight matches
+set ignorecase  " ignore case when searching
+set smartcase   " unless it has a capital letter
 
-" --------------------------------------------------------------
-" |                                              config-movement
-" --------------------------------------------------------------
+" Movement
 inoremap jk <Esc>
 " move easily between splits
 nnoremap <C-h> <C-w><Left>
@@ -109,27 +65,14 @@ nnoremap <space> za
 " highlight last inserted text
 nnoremap gV `[v`]
 
+" Leader
+" Open fzf search pane for local files as well as recent buffers
+let mapleader=','
+nnoremap <leader>t :Files<CR>
+nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>c :Tags<CR>
 
-" --------------------------------------------------------------
-" |                                                config-editor
-" --------------------------------------------------------------
-" Create persistent undo files and store them all in the same directory
-" Undo directory should be stored next to the vimrc.
-let vimrcdir = fnamemodify($MYVIMRC, ':p:h')
-let undopath = vimrcdir.'/undo/'
-" Create the dir if it doesn't exist
-if !isdirectory(undopath)
-  silent call mkdir(undopath, 'p')
-endif
-let &undodir=undopath
-set undofile
-" Same thing for backups
-let backuppath = vimrcdir.'/backups/'
-if !isdirectory(backuppath)
-  silent call mkdir(backuppath, 'p')
-endif
-let &backupdir=backuppath
-
+" Editor
 set formatoptions+=j         " Delete comment character when joining commented lines
 set autoread                 " Reload file
 set history=1000             " Store more :cmdline history
@@ -139,65 +82,15 @@ set wildmenu                 " graphical autocomplete menu
 "" First tab completes longest match, second tab begins cycling through the list
 set wildmode=longest:full,full
 
-" In insert mode, convert the word under the cursor to uppercase
-inoremap <C-u> <esc>viwUea
+" Lightline
+set laststatus=2
+let g:lightline = {
+      \ 'colorscheme': 'nord',
+      \ }
 
-" --------------------------------------------------------------
-" |                                                config-search
-" --------------------------------------------------------------
-set incsearch   " search as you type
-set hlsearch    " highlight matches
-set ignorecase  " ignore case when searching
-set smartcase   " unless it has a capital letter
-
-" --------------------------------------------------------------
-" |                                             config-autogroup
-" --------------------------------------------------------------
-
-augroup uiconfig
-  autocmd!
-  " Show absolute line numbers in insert mode only
-  autocmd InsertEnter * set norelativenumber
-  autocmd InsertLeave * set relativenumber
-  " put cursor at previous position on file open
-  autocmd BufReadPost * silent! exe "normal! g`\""
-  " resize splits when vim is resized
-  autocmd VimResized * wincmd =
-  " Trim trailing whitespace on save
-  autocmd FileType c,cabal,cpp,haskell,javascript,php,python,readme,text,vim,beancount
-        \ autocmd BufWritePre <buffer>
-        \ :call <SID>TrimWhitespace()
-  autocmd FocusGained,BufEnter * :checktime
-augroup END
-
-" --------------------------------------------------------------
-" |                                               config-airline
-" --------------------------------------------------------------
-let g:airline_theme='base16'
-
-" --------------------------------------------------------------
-" |                                      config-custom-functions
-" --------------------------------------------------------------
-fun! <SID>TrimWhitespace()
-  let l:save = winsaveview()
-  %s/\s\+$//e
-  call winrestview(l:save)
-endfun
-
-" --------------------------------------------------------------
-" |                                            config-commentary
-" --------------------------------------------------------------
-" vim recognized <C-/> as <C-_>
-" In both normal and visual mode make <C-/> (un)comment the line
-nnoremap <C-_> :Commentary<cr>
-vnoremap <C-_> :Commentary<cr>
-
-" --------------------------------------------------------------
-" |                                                   config-fzf
-" --------------------------------------------------------------
-" Update fzf pane to match current color scheme
+" FZF
 let g:fzf_colors =
-  \ { 'fg':      ['fg', 'Normal'],
+\ { 'fg':      ['fg', 'Normal'],
   \ 'bg':      ['bg', 'Normal'],
   \ 'hl':      ['fg', 'Comment'],
   \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
@@ -210,3 +103,9 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
+
+" Commentary
+" vim recognized <C-/> as <C-_>
+" In both normal and visual mode make <C-/> (un)comment the line
+nnoremap <C-_> :Commentary<cr>
+vnoremap <C-_> :Commentary<cr>
